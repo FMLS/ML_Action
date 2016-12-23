@@ -24,7 +24,10 @@ sum0 = 0
 sum1 = 0
 sum2 = 0
 
+total_count = 0
+
 while True:
+    total_count = total_count + 1
     #calculate the parameters
     for i in range(m):
     #begin batch gradient descent
@@ -49,3 +52,4 @@ while True:
     print ' theta0 : %f, theta1 : %f, theta2 : %f, error1 : %f'%(theta0,theta1,theta2,error1)
 
 print 'Done: theta0 : %f, theta1 : %f, theta2 : %f'%(theta0,theta1,theta2)
+print 'total count: %d' % total_count
