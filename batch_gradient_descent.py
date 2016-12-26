@@ -28,6 +28,10 @@ colors = np.random.rand(len(x))
 area = 50
 plt.scatter(x_point, y, s = area, c = colors)
 
+x_fin_point = []
+for i in range(len(x_test)):
+    x_fin_point.append(x_test[i][1])
+
 #epsilon = 0.000001
 epsilon = 0.0001
 #learning rate
@@ -67,7 +71,7 @@ while True:
 #    theta2 = sum2;
 
 
-#    plt.plot(x_test, [h(xi) for xi in x_test])
+    plt.plot(x_fin_point, [h(xi) for xi in x_test])
     #calculate the cost function
     error1 = 0
     for lp in range(len(x)):
@@ -82,9 +86,6 @@ while True:
 
 print 'Done: theta0 : %f, theta1 : %f, theta2 : %f'%(theta0,theta1,theta2)
 print 'total count: %d' % total_count
-x_fin_point = []
-for i in range(len(x_test)):
-    x_fin_point.append(x_test[i][1])
 
 plt.plot(x_fin_point, [h(xi) for xi in x_test])
 plt.xlabel('X1')
