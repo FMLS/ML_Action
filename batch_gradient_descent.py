@@ -67,7 +67,7 @@ while True:
 #    theta2 = sum2;
 
 
-    plt.plot([h(xi) for xi in x_test])
+#    plt.plot(x_test, [h(xi) for xi in x_test])
     #calculate the cost function
     error1 = 0
     for lp in range(len(x)):
@@ -82,5 +82,12 @@ while True:
 
 print 'Done: theta0 : %f, theta1 : %f, theta2 : %f'%(theta0,theta1,theta2)
 print 'total count: %d' % total_count
+x_fin_point = []
+for i in range(len(x_test)):
+    x_fin_point.append(x_test[i][1])
+
+plt.plot(x_fin_point, [h(xi) for xi in x_test])
+plt.xlabel('X1')
+plt.ylabel('X2')
 plt.show()
 
