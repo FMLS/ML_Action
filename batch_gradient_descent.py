@@ -52,8 +52,42 @@ sum2 = 0
 
 total_count = 0
 
+
 def h(x):
     return theta0 + theta1 * x[1] + theta1 * x[2]
+
+def gradAscent(x, y):
+    dataMatrix = np.mat(x)
+    labelMat  = np.mat(y).transpose()
+    m, n = np.shape(dataMatrix)
+    weights = np.ones((n, 1))
+    error0 = 0
+    error1 = 0
+    while True:
+        hx       = dataMatrix * weights
+        err      = labelMat - hx 
+        weights  = weights + alpha * dataMatrix.transpose() * err
+
+        error1 = 0
+        for lp in range(len(x)):
+            error1 += ( y[i] - h(x[i]) )**2/2
+    
+        if abs(error1 - error0) < epsilon:
+            break
+        else:
+            error0 = error1
+    return weights
+
+def h2x(x, weights):
+    return (weights[0] + weights[1] * x[1] + weights[2] * x[2])
+
+weights = gradAscent(x, y)
+#print [float(h2x(xi, weights)) for xi in x_test_set]
+plt.plot([float(h2x(xi, weights)) for xi in x_test_set])
+print weights
+
+
+error0 = 0
 
 while True:
     total_count = total_count + 1
@@ -70,7 +104,7 @@ while True:
     theta2 = sum2;
 
 
-    plt.plot([h(xi) for xi in x_test_set])
+#    plt.plot([h(xi) for xi in x_test_set])
     #calculate the cost function
     error1 = 0
     for lp in range(len(x)):
@@ -81,11 +115,12 @@ while True:
     else:
         error0 = error1
 
-    print ' theta0 : %f, theta1 : %f, theta2 : %f, error1 : %f'%(theta0,theta1,theta2,error1)
+#    print ' theta0 : %f, theta1 : %f, theta2 : %f, error1 : %f'%(theta0,theta1,theta2,error1)
 
 print 'Done: theta0 : %f, theta1 : %f, theta2 : %f'%(theta0,theta1,theta2)
 print 'total count: %d' % total_count
 
-#plt.plot(x_fin_point, [h(xi) for xi in x_test])
+plt.plot([h(xi) for xi in x_test_set])
+plt.plot([h(xi) for xi in x])
 plt.show()
 
